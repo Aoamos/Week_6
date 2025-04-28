@@ -94,7 +94,7 @@ const drugs = [
   },
 ];
 
-// API
+// 1. GET/drugs/antibiotics The API return all drugs where category is "Antibiotic"
 app.get("/drugs/antibiotics", (req, res) => {
   const antibiotics = drugs.filter((drug) => drug.category === "Antibiotic");
   res.send(antibiotics);
