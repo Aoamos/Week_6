@@ -257,3 +257,9 @@ app.get("/drugs/formatted", (req, res) => {
   );
   res.json(formattedDrugs);
 });
+
+// 7.GET /drugs/low-stock The API return all drugs where stock is less than 50.
+app.get("/drugs/low-stock", (req, res) => {
+  const lowStockDrugs = drugs.filter((drug) => drug.stock < 50);
+  res.json(lowStockDrugs);
+});
