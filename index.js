@@ -241,3 +241,19 @@ app.get("/drugs/names-manufacturers", (req, res) => {
   }));
   res.json(drugNamesManufacturers);
 });
+
+// 5.GET /drugs/prescription The API return all drugs where isPrescriptionOnly is true.
+app.get("/drugs/prescription", (req, res) => {
+  const prescriptionDrugs = drugs.filter(
+    (drug) => drug.isPrescriptionOnly === true
+  );
+  res.json(prescriptionDrugs);
+});
+
+// 6. GET /drugs/formatted The API return a new array where each item is a string like: "Drug: [name] - [dosageMg]mg"
+app.get("/drugs/formatted", (req, res) => {
+  const formattedDrugs = drugs.map(
+    (drug) => `Drug: ${drug.name} - ${drug.dosageMg}mg`
+  );
+  res.json(formattedDrugs);
+});
