@@ -232,3 +232,12 @@ app.post("/drugs/by-category", (req, res) => {
   );
   res.json(filterDrugs);
 });
+
+// 4. GET /drugs/names-manufacturers The API return an array of objects showing each drug’s name and manufacturer.
+app.get("/drugs/names-manufacturers", (req, res) => {
+  const drugNamesManufacturers = drugs.map((drug) => ({
+    name: drug.name,
+    manufacturer: drug.manufacturer,
+  }));
+  res.json(drugNamesManufacturers);
+});
