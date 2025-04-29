@@ -20,6 +20,7 @@ const drugs = [
     stock: 120,
     manufacturer: "Pfizer",
   },
+
   {
     id: 2,
     name: "Paracetamol",
@@ -29,6 +30,7 @@ const drugs = [
     stock: 200,
     manufacturer: "GSK",
   },
+
   {
     id: 3,
     name: "Ibuprofen",
@@ -38,6 +40,7 @@ const drugs = [
     stock: 150,
     manufacturer: "Bayer",
   },
+
   {
     id: 4,
     name: "Chloroquine",
@@ -47,6 +50,7 @@ const drugs = [
     stock: 80,
     manufacturer: "Sanofi",
   },
+
   {
     id: 5,
     name: "Ciprofloxacin",
@@ -56,6 +60,7 @@ const drugs = [
     stock: 70,
     manufacturer: "Pfizer",
   },
+
   {
     id: 6,
     name: "Loratadine",
@@ -65,6 +70,7 @@ const drugs = [
     stock: 160,
     manufacturer: "Novartis",
   },
+
   {
     id: 7,
     name: "Metformin",
@@ -74,6 +80,7 @@ const drugs = [
     stock: 140,
     manufacturer: "Teva",
   },
+
   {
     id: 8,
     name: "Artemether",
@@ -83,6 +90,7 @@ const drugs = [
     stock: 60,
     manufacturer: "Roche",
   },
+
   {
     id: 9,
     name: "Aspirin",
@@ -92,10 +100,135 @@ const drugs = [
     stock: 180,
     manufacturer: "Bayer",
   },
+
+  {
+    id: 10,
+    name: "Omeprazole",
+    category: "Antacid",
+    dosageMg: 20,
+    isPrescriptionOnly: true,
+    stock: 90,
+    manufacturer: "AstraZeneca",
+  },
+
+  {
+    id: 11,
+    name: "Azithromycin",
+    category: "Antibiotic",
+    dosageMg: 250,
+    isPrescriptionOnly: true,
+    stock: 50,
+    manufacturer: "Pfizer",
+  },
+
+  {
+    id: 12,
+    name: "Cetirizine",
+    category: "Antihistamine",
+    dosageMg: 10,
+    isPrescriptionOnly: false,
+    stock: 110,
+    manufacturer: "Novartis",
+  },
+
+  {
+    id: 13,
+    name: "Insulin",
+    category: "Antidiabetic",
+    dosageMg: 100,
+    isPrescriptionOnly: true,
+    stock: 30,
+    manufacturer: "Novo Nordisk",
+  },
+
+  {
+    id: 14,
+    name: "Artemisinin",
+    category: "Antimalarial",
+    dosageMg: 100,
+    isPrescriptionOnly: true,
+    stock: 50,
+    manufacturer: "GSK",
+  },
+
+  {
+    id: 15,
+    name: "Codeine",
+    category: "Analgesic",
+    dosageMg: 30,
+    isPrescriptionOnly: true,
+    stock: 20,
+    manufacturer: "Teva",
+  },
+
+  {
+    id: 16,
+    name: "Vitamin C",
+    category: "Supplement",
+    dosageMg: 500,
+    isPrescriptionOnly: false,
+    stock: 300,
+    manufacturer: "Nature’s Bounty",
+  },
+
+  {
+    id: 17,
+    name: "Ranitidine",
+    category: "Antacid",
+    dosageMg: 150,
+    isPrescriptionOnly: false,
+    stock: 90,
+    manufacturer: "Sanofi",
+  },
+
+  {
+    id: 18,
+    name: "Doxycycline",
+    category: "Antibiotic",
+    dosageMg: 100,
+    isPrescriptionOnly: true,
+    stock: 40,
+    manufacturer: "Pfizer",
+  },
+
+  {
+    id: 19,
+    name: "Tramadol",
+    category: "Analgesic",
+    dosageMg: 50,
+    isPrescriptionOnly: true,
+    stock: 45,
+    manufacturer: "Teva",
+  },
+
+  {
+    id: 20,
+    name: "Folic Acid",
+    category: "Supplement",
+    dosageMg: 5,
+    isPrescriptionOnly: false,
+    stock: 250,
+    manufacturer: "Nature’s Bounty",
+  },
 ];
 
 // 1. GET/drugs/antibiotics The API return all drugs where category is "Antibiotic"
 app.get("/drugs/antibiotics", (req, res) => {
   const antibiotics = drugs.filter((drug) => drug.category === "Antibiotic");
   res.send(antibiotics);
+});
+
+// 2. GET /drugs/names The API return an array of all drug names converted to lowercase
+app.get("/drugs/names", (req, res) => {
+  const drugNames = drugs.map((drug) => drug.name.toLowerCase());
+  res.json(drugNames);
+});
+
+// 3. POST /drugs/by-category The API Accept a category in the body and return all drugs under that category.
+app.post("/drugs/by-category", (req, res) => {
+  const reqCategory = req.body.category;
+  const filterDrugs = drugs.filter(
+    (drug) => drug.category.toLowerCase() === reqCategory.toLowerCase()
+  );
+  res.json(filterDrugs);
 });
