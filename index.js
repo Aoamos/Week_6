@@ -263,3 +263,9 @@ app.get("/drugs/low-stock", (req, res) => {
   const lowStockDrugs = drugs.filter((drug) => drug.stock < 50);
   res.json(lowStockDrugs);
 });
+
+// 8.GET /drugs/non-prescription The API return all drugs where isPrescriptionOnly is false.
+app.get("/drugs/non-prescription", (req, res) => {
+  const prescriptionDrugs = drugs.filter((drug) => !drug.isPrescriptionOnly);
+  res.json(prescriptionDrugs);
+});
